@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Berber | Yönetici Paneli</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =============================
+           MONOCHROME ADMIN LOGIN SCREEN
+        ============================= */
+        .login-screen {
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 1.5rem;
+        }
+
+        .login-card {
+            background: #090a0d;
+            border: 1px solid var(--border-silver);
+            border-radius: var(--radius-sm);
+            padding: 3rem 2.5rem;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: var(--shadow-card), var(--shadow-white);
+            text-align: center;
+        }
+
+        .login-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+
+        .login-icon-box {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-silver);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--silver-white);
+            margin: 0 auto 1.8rem;
+        }
+
+        .login-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 0.3rem;
+            letter-spacing: 2px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        .login-form label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 0.4rem;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .login-form label i {
+            color: var(--silver-white);
+            margin-right: 0.4rem;
+        }
+
+        .login-error {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            padding: 0.7rem 1rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .login-error.show { display: block; }
+
+        .btn-login {
+            margin-top: 0.5rem;
+            width: 100%;
+            padding: 0.9rem;
+            font-size: 0.95rem;
+        }
+
+        /* =============================
+           ADMIN DASHBOARD STYLES
+        ============================= */
+        .admin-page {
+            padding-top: 7rem;
+            padding-bottom: 5rem;
+            min-height: 100vh;
+        }
+
+        .admin-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .admin-stat-card {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-silver);
+            border-radius: var(--radius-sm);
+        }
+
+        .admin-stat-icon {
+            font-size: 1.6rem;
+            color: #000000;
+            background: #ffffff;
+            width: 54px; height: 54px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .admin-stat-info h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: var(--font-heading);
+        }
+
+        .admin-stat-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .admin-controls-bar {
+            padding: 1.5rem;
+            margin-bottom: 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-card);
+            border: 1px solid var(--border-silver);
+            border-radius: var(--radius-sm);
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            align-items: center;
+            flex: 1;
+        }
+
+        .filter-input {
+            max-width: 240px;
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-silver);
+            background: var(--bg-card);
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .admin-table th, .admin-table td {
+            padding: 1.1rem;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.95rem;
+        }
+
+        .admin-table th {
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--silver-white);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .admin-table tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .badge-status {
+            padding: 0.3rem 0.7rem;
+            border-radius: 2px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-bekliyor {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--silver-white);
+            border: 1px solid var(--border-silver);
+        }
+
+        .status-onaylandi {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-storniert {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .btn-icon {
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            border-radius: 2px;
+            font-size: 0.85rem;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-confirm { background: #10b981; color: #fff; }
+        .btn-cancel { background: #f59e0b; color: #fff; }
+        .btn-delete { background: #ef4444; color: #fff; }
+
+        .btn-confirm:hover, .btn-cancel:hover, .btn-delete:hover {
+            opacity: 0.85;
+        }
+
+        .empty-table-state {
+            padding: 4rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .empty-table-state i {
+            font-size: 3rem;
+            color: var(--silver-white);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Logout button */
+        .btn-logout {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            font-size: 0.85rem;
+        }
+        .btn-logout:hover {
+            background: rgba(239, 68, 68, 0.25);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================================
+         LOGIN SCREEN
+    ================================ -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <div class="login-logo">
+                <span class="logo-badge">PREMIUM</span>
+                <span class="logo-text">BERBER <span class="logo-sub">MÖRFELDEN</span></span>
+            </div>
+            <p class="login-subtitle">Yönetici Paneli Erişimi</p>
+
+            <div class="login-icon-box">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <h1 class="login-title">Giriş Yap</h1>
+
+            <form class="login-form" id="loginForm" onsubmit="doLogin(event)">
+                <div>
+                    <label for="adminPass"><i class="fa-solid fa-key"></i>Şifre</label>
+                    <input type="password" id="adminPass" class="form-control" placeholder="Yönetici şifresini girin..." autofocus required>
+                </div>
+                <div class="login-error" id="loginError">
+                    <i class="fa-solid fa-circle-xmark"></i> Hatalı şifre. Lütfen tekrar deneyin.
+                </div>
+                <button type="submit" class="btn btn-primary btn-login">
+                    <i class="fa-solid fa-right-to-bracket"></i> Panele Giriş
+                </button>
+            </form>
+
+            <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light);">
+                <a href="index.html" style="color: var(--text-muted); font-size: 0.85rem;">
+                    <i class="fa-solid fa-arrow-left"></i> Siteye Dön
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================
+         ADMIN DASHBOARD (hidden until login)
+    ================================ -->
+    <div id="adminDashboard" style="display:none;">
+
+        <!-- Header Navbar -->
+        <header class="site-header">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <span class="logo-badge">PREMIUM</span>
+                    <span class="logo-text">BERBER <span class="logo-sub">MÖRFELDEN</span></span>
+                    <span style="font-size: 0.75rem; color: #000000; background: #ffffff; font-weight: 900; margin-left: 0.5rem; padding: 0.1rem 0.5rem; border-radius: 2px;">ADMIN</span>
+                </a>
+
+                <div class="nav-actions">
+                    <button class="btn btn-logout btn-sm" onclick="doLogout()">
+                        <i class="fa-solid fa-right-from-bracket"></i> Çıkış
+                    </button>
+                    <a href="index.html" class="btn btn-outline btn-sm">
+                        <i class="fa-solid fa-arrow-left"></i> Siteye Dön
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+        <main class="admin-page container">
+
+            <div class="section-header" style="margin-bottom: 2rem;">
+                <div class="section-tag">YÖNETİM PANELDİR</div>
+                <h1 class="section-title">Randevu Yönetimi Dashboard</h1>
+                <p class="section-subtitle" style="margin:0;">Premium Berber müşterilerinin randevularını yönetin, onaylayın veya silin.</p>
+            </div>
+
+            <!-- Dashboard Statistics -->
+            <div class="admin-stats-grid">
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="admin-stat-info">
+                        <h3 id="statTotalCount">0</h3>
+                        <p>Toplam Randevu</p>
+                    </div>
+                </div>
+
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon"><i class="fa-solid fa-clock"></i></div>
+                    <div class="admin-stat-info">
+                        <h3 id="statPendingCount">0</h3>
+                        <p>Bekleyen Randevular</p>
+                    </div>
+                </div>
+
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon"><i class="fa-solid fa-check-double"></i></div>
+                    <div class="admin-stat-info">
+                        <h3 id="statApprovedCount">0</h3>
+                        <p>Onaylanan Randevular</p>
+                    </div>
+                </div>
+
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon"><i class="fa-solid fa-calendar-day"></i></div>
+                    <div class="admin-stat-info">
+                        <h3 id="statTodayCount">0</h3>
+                        <p>Bugünün Randevuları</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls & Filters -->
+            <div class="admin-controls-bar">
+                <div class="filter-group">
+                    <!-- Search Bar -->
+                    <input type="text" id="searchInput" class="form-control filter-input" placeholder="Müşteri veya Telefon Ara...">
+                    
+                    <!-- Date Filter -->
+                    <input type="date" id="dateFilter" class="form-control filter-input">
+
+                    <!-- Status Filter -->
+                    <select id="statusFilter" class="form-control filter-input">
+                        <option value="ALL">Tüm Durumlar</option>
+                        <option value="Bekliyor">Bekliyor</option>
+                        <option value="Onaylandı">Onaylandı</option>
+                        <option value="Storniert">Storniert (İptal)</option>
+                    </select>
+
+                    <button class="btn btn-outline btn-sm" onclick="resetFilters()">
+                        <i class="fa-solid fa-rotate-left"></i> Filtre Sıfırla
+                    </button>
+                </div>
+
+                <div>
+                    <button class="btn btn-primary btn-sm" onclick="exportToCSV()">
+                        <i class="fa-solid fa-file-csv"></i> CSV İndir
+                    </button>
+                </div>
+            </div>
+
+            <!-- Appointments Table -->
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Tarih & Saat</th>
+                            <th>Müşteri Adı</th>
+                            <th>Telefon</th>
+                            <th>Hizmet</th>
+                            <th>Notlar</th>
+                            <th>Durum</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentsTableBody">
+                        <!-- Dynamic Data -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+    </div><!-- end #adminDashboard -->
+
+    <script src="admin.js"></script>
+    <script>
+        // ============================================================
+        // AUTHENTICATION LOGIC (Password: ramsy)
+        // ============================================================
+        const ADMIN_PASSWORD = 'ramsy';
+        const SESSION_KEY = 'finale_admin_auth';
+
+        function checkSession() {
+            return sessionStorage.getItem(SESSION_KEY) === 'true';
+        }
+
+        function showDashboard() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('adminDashboard').style.display = 'block';
+            if (typeof renderDashboard === 'function') {
+                renderDashboard();
+            }
+        }
+
+        function doLogin(e) {
+            e.preventDefault();
+            const pass = document.getElementById('adminPass').value;
+            const errEl = document.getElementById('loginError');
+
+            if (pass === ADMIN_PASSWORD) {
+                sessionStorage.setItem(SESSION_KEY, 'true');
+                errEl.classList.remove('show');
+                showDashboard();
+            } else {
+                errEl.classList.add('show');
+                document.getElementById('adminPass').value = '';
+                document.getElementById('adminPass').focus();
+            }
+        }
+
+        function doLogout() {
+            sessionStorage.removeItem(SESSION_KEY);
+            location.reload();
+        }
+
+        if (checkSession()) {
+            showDashboard();
+        }
+    </script>
+</body>
+</html>
