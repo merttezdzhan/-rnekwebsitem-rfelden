@@ -446,7 +446,7 @@ h1, h2, h3, h4, .brand-title {
    ========================================================================== */
 .hero-section {
     position: relative;
-    padding-top: 10.5rem;
+    padding-top: 9rem;
     padding-bottom: 7rem;
     overflow: hidden;
     background: #040507;
@@ -460,8 +460,8 @@ h1, h2, h3, h4, .brand-title {
     background-image: 
         radial-gradient(circle at center, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.5) 55%, rgba(4, 5, 7, 0.95) 90%),
         url('r8_logo.jpg');
-    background-size: min(480px, 75vw) auto;
-    background-position: center 6%;
+    background-size: min(440px, 72vw) auto;
+    background-position: center 38%;
     background-repeat: no-repeat;
     filter: contrast(135%) brightness(110%);
     pointer-events: none;
@@ -476,19 +476,19 @@ h1, h2, h3, h4, .brand-title {
 }
 
 .hero-brand-emblem-wrap {
-    margin-bottom: 2.8rem;
+    margin-bottom: 1.5rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
 }
 
 .hero-brand-emblem {
-    width: 165px;
-    height: 165px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
     border: 2.5px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 0 50px rgba(255, 255, 255, 0.35), 0 12px 35px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 45px rgba(255, 255, 255, 0.35), 0 10px 30px rgba(0, 0, 0, 0.9);
     animation: heroEmblemFloat 6s ease-in-out infinite;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
@@ -523,7 +523,7 @@ h1, h2, h3, h4, .brand-title {
     justify-content: center;
     flex-wrap: wrap;
     gap: 0.8rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
 }
 
 .badge-silver {
@@ -544,7 +544,7 @@ h1, h2, h3, h4, .brand-title {
     font-size: clamp(2.8rem, 6.5vw, 5.2rem);
     font-weight: 800;
     line-height: 1.08;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3.2rem;
     letter-spacing: 2px;
     text-shadow: 0 4px 25px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.9);
 }
@@ -1891,28 +1891,28 @@ h1, h2, h3, h4, .brand-title {
     }
 
     .hero-section {
-        padding-top: 6.8rem;
-        padding-bottom: 3.8rem;
+        padding-top: 6.5rem;
+        padding-bottom: 3.5rem;
     }
 
-    /* Mobile Optimized Background Logo */
+    /* Mobile Optimized Background Logo (Between Title and Subtitle) */
     .hero-bg-media {
         opacity: 0.65;
-        background-size: min(280px, 72vw) auto;
-        background-position: center 3%;
+        background-size: min(250px, 68vw) auto;
+        background-position: center 42%;
         filter: contrast(140%) brightness(115%);
     }
 
-    /* Mobile Optimized Floating Logo (Crisp & Legible) */
+    /* Mobile Optimized Floating Logo */
     .hero-brand-emblem-wrap {
-        margin-bottom: 1.8rem;
+        margin-bottom: 1.1rem;
     }
 
     .hero-brand-emblem {
-        width: 125px;
-        height: 125px;
+        width: 110px;
+        height: 110px;
         border: 2px solid rgba(255, 255, 255, 0.6);
-        box-shadow: 0 0 35px rgba(255, 255, 255, 0.4), 0 8px 24px rgba(0, 0, 0, 0.9);
+        box-shadow: 0 0 32px rgba(255, 255, 255, 0.35), 0 8px 20px rgba(0, 0, 0, 0.9);
     }
 
     /* Mobile Portal Modal Logo */
@@ -1945,13 +1945,13 @@ h1, h2, h3, h4, .brand-title {
         flex-wrap: wrap;
         justify-content: center;
         gap: 0.5rem;
-        margin-bottom: 1.4rem;
+        margin-bottom: 0.9rem;
     }
 
     .hero-title {
         font-size: clamp(1.5rem, 7vw, 1.95rem);
         line-height: 1.25;
-        margin-bottom: 1.6rem;
+        margin-bottom: 2.2rem;
         text-shadow: 0 3px 18px rgba(0, 0, 0, 0.98), 0 1px 4px rgba(0, 0, 0, 0.9);
     }
 
