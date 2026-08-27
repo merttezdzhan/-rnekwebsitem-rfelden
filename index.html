@@ -65,19 +65,20 @@
     <!-- Header / Navbar -->
     <header class="site-header">
         <nav class="navbar">
-            <a href="#home" class="logo">
-                <img src="r8_logo.jpg" alt="R8 Friseur Logo" class="nav-logo-img">
-                <span class="logo-text">R8 <span class="logo-sub">FRISEUR</span></span>
-            </a>
+            <div class="navbar-brand-group">
+                <a href="#home" class="logo" aria-label="R8 Friseur">
+                    <img src="r8_logo.jpg" alt="R8 Friseur Logo" class="nav-logo-img">
+                </a>
 
-            <!-- Gender Section Segmented Switcher in Navbar -->
-            <div class="gender-switch-bar">
-                <button class="gender-tab active" id="tabHerren" onclick="chooseGenderSection('herren')">
-                    <i class="fa-solid fa-user-tie"></i> <span data-i18n="tabHerren">Herren</span>
-                </button>
-                <button class="gender-tab" id="tabDamen" onclick="chooseGenderSection('damen')">
-                    <i class="fa-solid fa-gem"></i> <span data-i18n="tabDamen">Damen</span>
-                </button>
+                <!-- Gender Section Segmented Switcher in Navbar -->
+                <div class="gender-switch-bar">
+                    <button class="gender-tab active" id="tabHerren" onclick="chooseGenderSection('herren')">
+                        <i class="fa-solid fa-user-tie"></i> <span data-i18n="tabHerren">Herren</span>
+                    </button>
+                    <button class="gender-tab" id="tabDamen" onclick="chooseGenderSection('damen')">
+                        <i class="fa-solid fa-gem"></i> <span data-i18n="tabDamen">Damen</span>
+                    </button>
+                </div>
             </div>
 
             <div class="nav-menu" id="navMenu">

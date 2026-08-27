@@ -299,16 +299,22 @@ h1, h2, h3, h4, .brand-title {
     box-shadow: 0 20px 50px rgba(0,0,0,0.9);
 }
 
+.navbar-brand-group {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
     font-weight: 800;
+    line-height: 0;
 }
 
 .nav-logo-img {
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     object-fit: cover;
     border: 1.5px solid rgba(255, 255, 255, 0.45);
@@ -319,7 +325,7 @@ h1, h2, h3, h4, .brand-title {
 
 .logo:hover .nav-logo-img {
     transform: scale(1.08);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 22px rgba(255, 255, 255, 0.45);
 }
 
 .logo-badge {
@@ -1836,9 +1842,13 @@ h1, h2, h3, h4, .brand-title {
         padding: 0.5rem 0.85rem;
     }
 
+    .navbar-brand-group {
+        gap: 0.55rem;
+    }
+
     .nav-logo-img {
-        width: 32px;
-        height: 32px;
+        width: 34px;
+        height: 34px;
         border-width: 1px;
     }
 
