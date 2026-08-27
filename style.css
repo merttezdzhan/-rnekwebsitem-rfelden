@@ -456,14 +456,8 @@ h1, h2, h3, h4, .brand-title {
     position: absolute;
     inset: 0;
     z-index: 1;
-    opacity: 0.58;
-    background-image: 
-        radial-gradient(circle at center, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.5) 55%, rgba(4, 5, 7, 0.95) 90%),
-        url('r8_logo.jpg');
-    background-size: min(440px, 72vw) auto;
-    background-position: center 38%;
-    background-repeat: no-repeat;
-    filter: contrast(135%) brightness(110%);
+    opacity: 0.85;
+    background: radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 45%, rgba(4, 5, 7, 0.98) 75%), #040507;
     pointer-events: none;
 }
 
@@ -475,55 +469,12 @@ h1, h2, h3, h4, .brand-title {
     text-align: center;
 }
 
-.hero-brand-emblem-wrap {
-    margin-bottom: 1.5rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-brand-emblem {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2.5px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 0 45px rgba(255, 255, 255, 0.35), 0 10px 30px rgba(0, 0, 0, 0.9);
-    animation: heroEmblemFloat 6s ease-in-out infinite;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.hero-brand-emblem:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 65px rgba(255, 255, 255, 0.55), 0 15px 40px rgba(0, 0, 0, 0.95);
-}
-
-@keyframes heroEmblemFloat {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-8px) scale(1.02); }
-}
-
-.portal-logo-emblem-wrap {
-    margin-bottom: 1.4rem;
-    display: inline-flex;
-    justify-content: center;
-}
-
-.portal-logo-emblem-img {
-    width: 105px;
-    height: 105px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-}
-
 .hero-badges {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 0.8rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.4rem;
 }
 
 .badge-silver {
@@ -544,9 +495,53 @@ h1, h2, h3, h4, .brand-title {
     font-size: clamp(2.8rem, 6.5vw, 5.2rem);
     font-weight: 800;
     line-height: 1.08;
-    margin-bottom: 3.2rem;
+    margin-bottom: 2rem;
     letter-spacing: 2px;
     text-shadow: 0 4px 25px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+/* Central 3D Brand Emblem (Between Title and Subtitle) */
+.hero-brand-emblem-wrap {
+    margin-bottom: 2.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-brand-emblem {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 55px rgba(255, 255, 255, 0.4), 0 15px 35px rgba(0, 0, 0, 0.95);
+    animation: heroEmblemFloat 6s ease-in-out infinite;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hero-brand-emblem:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 70px rgba(255, 255, 255, 0.6), 0 18px 45px rgba(0, 0, 0, 0.98);
+}
+
+@keyframes heroEmblemFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-8px) scale(1.02); }
+}
+
+.portal-logo-emblem-wrap {
+    margin-bottom: 1.4rem;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.portal-logo-emblem-img {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
 }
 
 .hero-subtitle {
@@ -1891,28 +1886,49 @@ h1, h2, h3, h4, .brand-title {
     }
 
     .hero-section {
-        padding-top: 6.5rem;
+        padding-top: 6.2rem;
         padding-bottom: 3.5rem;
     }
 
-    /* Mobile Optimized Background Logo (Between Title and Subtitle) */
+    /* Mobile Ambient Glow */
     .hero-bg-media {
-        opacity: 0.65;
-        background-size: min(250px, 68vw) auto;
-        background-position: center 42%;
-        filter: contrast(140%) brightness(115%);
+        opacity: 0.9;
+        background: radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.06) 0%, rgba(4, 5, 7, 0.98) 75%), #040507;
     }
 
-    /* Mobile Optimized Floating Logo */
+    .hero-badges {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.45rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero-title {
+        font-size: clamp(1.55rem, 7.5vw, 2.05rem);
+        line-height: 1.25;
+        margin-bottom: 1.2rem;
+        text-shadow: 0 3px 18px rgba(0, 0, 0, 0.98), 0 1px 4px rgba(0, 0, 0, 0.9);
+    }
+
+    /* Mobile 3D Logo (Between Title and Subtitle) */
     .hero-brand-emblem-wrap {
-        margin-bottom: 1.1rem;
+        margin-bottom: 1.4rem;
     }
 
     .hero-brand-emblem {
-        width: 110px;
-        height: 110px;
-        border: 2px solid rgba(255, 255, 255, 0.6);
-        box-shadow: 0 0 32px rgba(255, 255, 255, 0.35), 0 8px 20px rgba(0, 0, 0, 0.9);
+        width: 125px;
+        height: 125px;
+        border: 2.5px solid rgba(255, 255, 255, 0.7);
+        box-shadow: 0 0 38px rgba(255, 255, 255, 0.45), 0 8px 24px rgba(0, 0, 0, 0.9);
+    }
+
+    .hero-subtitle {
+        font-size: 0.88rem;
+        line-height: 1.6;
+        margin-bottom: 2.2rem;
+        padding: 0 0.4rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.98);
     }
 
     /* Mobile Portal Modal Logo */
@@ -1938,29 +1954,6 @@ h1, h2, h3, h4, .brand-title {
 
     .footer-emblem-title {
         font-size: 1.35rem;
-    }
-
-    .hero-badges {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-bottom: 0.9rem;
-    }
-
-    .hero-title {
-        font-size: clamp(1.5rem, 7vw, 1.95rem);
-        line-height: 1.25;
-        margin-bottom: 2.2rem;
-        text-shadow: 0 3px 18px rgba(0, 0, 0, 0.98), 0 1px 4px rgba(0, 0, 0, 0.9);
-    }
-
-    .hero-subtitle {
-        font-size: 0.88rem;
-        line-height: 1.6;
-        margin-bottom: 2.6rem;
-        padding: 0 0.5rem;
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.98);
     }
     .hero-badge-pill {
         font-size: 0.72rem;
