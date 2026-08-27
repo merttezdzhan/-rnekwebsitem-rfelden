@@ -523,7 +523,7 @@ h1, h2, h3, h4, .brand-title {
     justify-content: center;
     flex-wrap: wrap;
     gap: 0.8rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
 }
 
 .badge-silver {
@@ -544,7 +544,7 @@ h1, h2, h3, h4, .brand-title {
     font-size: clamp(2.8rem, 6.5vw, 5.2rem);
     font-weight: 800;
     line-height: 1.08;
-    margin-bottom: 1.8rem;
+    margin-bottom: 2.4rem;
     letter-spacing: 2px;
     text-shadow: 0 4px 25px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.9);
 }
@@ -553,8 +553,9 @@ h1, h2, h3, h4, .brand-title {
     font-size: clamp(1.05rem, 2vw, 1.25rem);
     color: #e2e8f0;
     max-width: 780px;
-    margin: 0 auto 2.8rem;
+    margin: 0 auto 3rem;
     font-weight: 400;
+    line-height: 1.65;
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95);
 }
 
@@ -1941,11 +1942,13 @@ h1, h2, h3, h4, .brand-title {
     .hero-title {
         font-size: clamp(1.55rem, 7.5vw, 2.1rem);
         line-height: 1.25;
+        margin-bottom: 1.6rem;
         text-shadow: 0 3px 18px rgba(0, 0, 0, 0.98), 0 1px 4px rgba(0, 0, 0, 0.9);
     }
     .hero-subtitle {
         font-size: 0.88rem;
-        margin-bottom: 1.8rem;
+        line-height: 1.55;
+        margin-bottom: 2.2rem;
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.98);
     }
     .hero-badges {
@@ -1953,6 +1956,7 @@ h1, h2, h3, h4, .brand-title {
         flex-wrap: wrap;
         justify-content: center;
         gap: 0.5rem;
+        margin-bottom: 0.9rem;
     }
     .hero-badge-pill {
         font-size: 0.72rem;
