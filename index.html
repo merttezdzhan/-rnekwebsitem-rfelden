@@ -15,8 +15,91 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Stylesheet with Cache Busting -->
+    <link rel="stylesheet" href="style.css?v=3.1">
+
+    <style>
+        /* Bulletproof Navbar Row Layout for all Mobile & Desktop screens */
+        .site-header {
+            position: fixed;
+            top: 0.8rem;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 0.8rem;
+        }
+        .navbar {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            flex-wrap: nowrap !important;
+            padding: 0.45rem 0.85rem !important;
+            gap: 0.5rem !important;
+        }
+        .navbar-brand-group {
+            display: inline-flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 0.65rem !important;
+            flex-shrink: 0 !important;
+            flex-wrap: nowrap !important;
+        }
+        .logo {
+            display: inline-flex !important;
+            align-items: center !important;
+            flex-shrink: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            line-height: 0 !important;
+        }
+        .nav-logo-img {
+            width: 38px !important;
+            height: 38px !important;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.25) !important;
+            display: block !important;
+            flex-shrink: 0 !important;
+        }
+        .gender-switch-bar {
+            display: inline-flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            background: rgba(255, 255, 255, 0.06) !important;
+            border: 1px solid var(--border-silver) !important;
+            border-radius: 9999px !important;
+            padding: 2px !important;
+            gap: 2px !important;
+            flex-shrink: 0 !important;
+            white-space: nowrap !important;
+        }
+        .gender-tab {
+            display: inline-flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 0.35rem !important;
+            padding: 0.28rem 0.6rem !important;
+            border-radius: 9999px !important;
+            font-size: 0.75rem !important;
+            font-weight: 700 !important;
+            border: none !important;
+            cursor: pointer !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+            flex-shrink: 0 !important;
+            white-space: nowrap !important;
+        }
+        .gender-tab span {
+            white-space: nowrap !important;
+        }
+        .mobile-toggle {
+            margin-left: auto !important;
+            flex-shrink: 0 !important;
+            padding: 0.4rem 0.65rem !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -887,7 +970,7 @@
         </div>
     </div>
 
-    <!-- JavaScript File -->
-    <script src="script.js"></script>
+    <!-- JavaScript File with Cache Busting -->
+    <script src="script.js?v=3.1"></script>
 </body>
 </html>
