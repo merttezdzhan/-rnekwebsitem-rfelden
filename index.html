@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="theme-color" content="#000000">
-    <meta name="description" content="Premium Berber in Mörfelden-Walldorf - Professionelle Herrenhaarschnitte, Fades und präzise Bartpflege. Besuche mit und ohne Termin in der Westendstraße 3.">
-    <title data-i18n="docTitle">Premium Berber | Mörfelden-Walldorf</title>
+    <meta name="description" content="R8 Friseur in Mörfelden-Walldorf - Professionelle Herrenhaarschnitte, Fades und präzise Bartpflege. Besuche mit und ohne Termin in der Westendstraße 3.">
+    <title data-i18n="docTitle">R8 Friseur | Mörfelden-Walldorf</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,20 +20,72 @@
 </head>
 <body>
 
+    <!-- ==========================================================================
+         WELCOME GENDER SELECTION PORTAL (SPLASH OVERLAY)
+         ========================================================================== -->
+    <div id="genderPortalModal" class="portal-overlay">
+        <div class="portal-card">
+            <div class="portal-logo">
+                <span class="logo-badge">R8</span>
+                <span class="logo-text">FRISEUR <span class="logo-sub">MÖRFELDEN</span></span>
+            </div>
+            <span class="portal-badge"><i class="fa-solid fa-gem"></i> EXKLUSIVER SALON</span>
+            <h2 class="portal-title" data-i18n="portalTitle">Willkommen bei R8 Friseur</h2>
+            <p class="portal-subtitle" data-i18n="portalSubtitle">Bitte wählen Sie Ihren Salon-Bereich / Lütfen bölümünüzü seçin:</p>
+            
+            <div class="portal-grid">
+                <!-- Herren / Erkek Choice -->
+                <div class="portal-option-card herren-option" onclick="chooseGenderSection('herren')">
+                    <div class="portal-icon-box">
+                        <i class="fa-solid fa-scissors"></i>
+                    </div>
+                    <span class="portal-option-tag" data-i18n="portalHerrenTag">BARBERSHOP</span>
+                    <h3 class="portal-option-name" data-i18n="portalHerrenTitle">HERREN / ERKEK</h3>
+                    <p class="portal-option-desc" data-i18n="portalHerrenDesc">Herrenhaarschnitte, Skin Fades, Bartpflege, Konturen & Pflege-Rituale</p>
+                    <button class="btn btn-primary portal-btn" data-i18n="portalHerrenBtn">
+                        <i class="fa-solid fa-arrow-right"></i> Herrenbereich Auswählen
+                    </button>
+                </div>
+
+                <!-- Damen / Kadın Choice -->
+                <div class="portal-option-card damen-option" onclick="chooseGenderSection('damen')">
+                    <div class="portal-icon-box">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <span class="portal-option-tag" data-i18n="portalDamenTag">HAIR & BEAUTY</span>
+                    <h3 class="portal-option-name" data-i18n="portalDamenTitle">DAMEN / KADIN</h3>
+                    <p class="portal-option-desc" data-i18n="portalDamenDesc">Damenschnitte, Föhnen & Styling, Balayage, Coloration, Keratin & Pflege</p>
+                    <button class="btn btn-primary portal-btn" data-i18n="portalDamenBtn">
+                        <i class="fa-solid fa-arrow-right"></i> Damenbereich Auswählen
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Header / Navbar -->
     <header class="site-header">
         <nav class="navbar">
             <a href="#home" class="logo">
-                <span class="logo-badge">PREMIUM</span>
-                <span class="logo-text">BERBER <span class="logo-sub">MÖRFELDEN</span></span>
+                <span class="logo-badge">R8</span>
+                <span class="logo-text">FRISEUR <span class="logo-sub">MÖRFELDEN</span></span>
             </a>
+
+            <!-- Gender Section Segmented Switcher in Navbar -->
+            <div class="gender-switch-bar">
+                <button class="gender-tab active" id="tabHerren" onclick="chooseGenderSection('herren')">
+                    <i class="fa-solid fa-user-tie"></i> <span data-i18n="tabHerren">Herren</span>
+                </button>
+                <button class="gender-tab" id="tabDamen" onclick="chooseGenderSection('damen')">
+                    <i class="fa-solid fa-gem"></i> <span data-i18n="tabDamen">Damen</span>
+                </button>
+            </div>
 
             <div class="nav-menu" id="navMenu">
                 <ul class="nav-links">
                     <li><a href="#home" class="nav-link active" data-i18n="navHome">Startseite</a></li>
                     <li><a href="#about" class="nav-link" data-i18n="navAbout">Über Uns</a></li>
                     <li><a href="#services" class="nav-link" data-i18n="navServices">Leistungen & Preise</a></li>
-                    <li><a href="#gallery" class="nav-link" data-i18n="navGallery">Galerie</a></li>
                     <li><a href="#contact" class="nav-link" data-i18n="navContact">Kontakt & Anfahrt</a></li>
                 </ul>
 
@@ -69,15 +121,16 @@
                 <div class="hero-content">
                     <div class="hero-badges">
                         <span class="badge badge-silver"><i class="fa-solid fa-location-dot"></i> Mörfelden-Walldorf</span>
+                        <span class="badge badge-glass" id="heroGenderBadge"><i class="fa-solid fa-scissors"></i> <span data-i18n="currentSectionLabel">Herren Salon</span></span>
                         <span class="badge badge-glass"><i class="fa-solid fa-bolt"></i> <span data-i18n="walkInBadge">Ohne Termin möglich</span></span>
                     </div>
 
-                    <h1 class="hero-title" data-i18n="heroTitle">
+                    <h1 class="hero-title" id="heroMainTitle" data-i18n="heroTitle">
                         Perfekter Cut & <span class="mono-gradient-text">Präzise Bartpflege</span>
                     </h1>
 
-                    <p class="hero-subtitle" data-i18n="heroSubtitle">
-                        Willkommen bei Premium Berber in Mörfelden-Walldorf. Wir bieten Ihnen professionelle Herrenhaarschnitte, moderne Fades und erstklassiges Styling.
+                    <p class="hero-subtitle" id="heroMainSubtitle" data-i18n="heroSubtitle">
+                        Willkommen bei R8 Friseur in Mörfelden-Walldorf. Wir bieten Ihnen professionelle Herrenhaarschnitte, moderne Fades und erstklassiges Styling.
                     </p>
 
                     <div class="hero-buttons">
@@ -152,51 +205,48 @@
             </div>
         </section>
 
-        <!-- About Section -->
+        <!-- About Section (Shop photo removed) -->
         <section id="about" class="about-section">
             <div class="container">
-                <div class="about-grid">
-                    <div class="about-text-column">
+                <div class="about-full-container">
+                    <div class="section-header text-center" style="margin-bottom: 2.5rem;">
                         <div class="section-tag" data-i18n="aboutTag">ÜBER UNSEREN SALON</div>
-                        <h2 class="section-title" data-i18n="aboutTitle">Premium Berber – Tradition trifft auf modernen Style</h2>
-                        <p class="about-description" data-i18n="aboutDesc1">
-                            In der Westendstraße 3 in Mörfelden-Walldorf bieten wir mehr als nur Haarschnitte – wir bieten ein erstklassiges Pflegeritual für den modernen Mann. 
+                        <h2 class="section-title" data-i18n="aboutTitle">R8 Friseur – Tradition trifft auf modernen Style</h2>
+                        <p class="section-subtitle" style="max-width: 750px; margin: 0 auto;" data-i18n="aboutDesc1">
+                            In der Westendstraße 3 in Mörfelden-Walldorf bieten wir mehr als nur Haarschnitte – wir bieten ein erstklassiges Pflegeritual für Sie & Ihn.
                         </p>
-                        <p class="about-description" data-i18n="aboutDesc2">
-                            Egal ob präziser Skin Fade, klassischer Faconschnitt oder konturenscharfe Bartpflege mit Hot-Towel Behandlung: Bei uns stehen höchste Präzision und Ihre Kundenzufriedenheit an erster Stelle.
-                        </p>
-
-                        <div class="features-list">
-                            <div class="feature-card">
-                                <div class="feature-icon"><i class="fa-solid fa-scissors"></i></div>
-                                <div class="feature-info">
-                                    <h3 data-i18n="feat1Title">Präzise Fades & Schnitte</h3>
-                                    <p data-i18n="feat1Desc">Saubere Übergänge maßgeschneidert auf Ihre Kopfform.</p>
-                                </div>
-                            </div>
-                            <div class="feature-card">
-                                <div class="feature-icon"><i class="fa-solid fa-spa"></i></div>
-                                <div class="feature-info">
-                                    <h3 data-i18n="feat2Title">Traditionelle Bartpflege</h3>
-                                    <p data-i18n="feat2Desc">Rasur, Konturen und wohltuende Pflegeprodukte.</p>
-                                </div>
-                            </div>
-                            <div class="feature-card">
-                                <div class="feature-icon"><i class="fa-solid fa-door-open"></i></div>
-                                <div class="feature-info">
-                                    <h3 data-i18n="feat3Title">Spontan oder mit Termin</h3>
-                                    <p data-i18n="feat3Desc">Online buchen, anrufen oder einfach vorbeikommen.</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
-                    <div class="about-image-column">
-                        <div class="image-wrapper">
-                            <img src="interior.jpg" alt="Premium Berber Innenraum" class="about-img" loading="lazy">
-                            <div class="experience-badge">
-                                <span class="badge-number">100%</span>
-                                <span class="badge-text" data-i18n="satisfactionText">Kundenzufriedenheit</span>
+                    <div class="about-features-matrix">
+                        <div class="feature-card glass-panel">
+                            <div class="feature-icon"><i class="fa-solid fa-scissors"></i></div>
+                            <div class="feature-info">
+                                <h3 data-i18n="feat1Title">Präzise Fades & Schnitte</h3>
+                                <p data-i18n="feat1Desc">Saubere Übergänge maßgeschneidert auf Ihre Kopfform.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-card glass-panel">
+                            <div class="feature-icon"><i class="fa-solid fa-spa"></i></div>
+                            <div class="feature-info">
+                                <h3 data-i18n="feat2Title">Traditionelle Bartpflege</h3>
+                                <p data-i18n="feat2Desc">Rasur, Konturen und wohltuende Pflegeprodukte.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-card glass-panel">
+                            <div class="feature-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                            <div class="feature-info">
+                                <h3>Damen Styling & Balayage</h3>
+                                <p>Exklusive Schnitte, Farbtechniken & Tiefenpflege.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-card glass-panel">
+                            <div class="feature-icon"><i class="fa-solid fa-door-open"></i></div>
+                            <div class="feature-info">
+                                <h3 data-i18n="feat3Title">Spontan oder mit Termin</h3>
+                                <p data-i18n="feat3Desc">Online buchen, anrufen oder einfach vorbeikommen.</p>
                             </div>
                         </div>
                     </div>
@@ -209,12 +259,12 @@
             <div class="container">
                 <div class="section-header text-center">
                     <div class="section-tag" data-i18n="servicesTag">ANGEBOT & LEISTUNGEN</div>
-                    <h2 class="section-title" data-i18n="servicesTitle">Unsere Leistungen & Preise</h2>
-                    <p class="section-subtitle" data-i18n="servicesSub">Erstklassige Qualität zu fairen Preisen. Wählen Sie Ihre gewünschte Leistung aus.</p>
+                    <h2 class="section-title" id="servicesTitle" data-i18n="servicesTitle">Unsere Leistungen & Preise</h2>
+                    <p class="section-subtitle" id="servicesSubtitle" data-i18n="servicesSub">Erstklassige Qualität zu fairen Preisen. Wählen Sie Ihre gewünschte Leistung aus.</p>
                 </div>
 
-                <!-- Interactive Service Cards Grid -->
-                <div class="services-cards-grid">
+                <!-- HERREN SERVICES GRID -->
+                <div id="herrenServicesGrid" class="services-cards-grid">
                     <div class="service-card glass-panel" onclick="quickSelectService('Herrenhaarschnitt')">
                         <div class="service-badge" data-i18n="popularBadge">Beliebt</div>
                         <div class="service-icon"><i class="fa-solid fa-scissors"></i></div>
@@ -268,9 +318,74 @@
                     </div>
                 </div>
 
-                <!-- Complete Price List Table -->
-                <div class="price-list-container glass-panel">
-                    <h3 class="price-table-title" data-i18n="fullPriceTitle"><i class="fa-solid fa-list"></i> Vollständige Preisübersicht</h3>
+                <!-- DAMEN SERVICES GRID -->
+                <div id="damenServicesGrid" class="services-cards-grid" style="display:none;">
+                    <div class="service-card glass-panel" onclick="quickSelectService('Damenschnitt & Styling')">
+                        <div class="service-badge" data-i18n="popularBadge">Beliebt</div>
+                        <div class="service-icon"><i class="fa-solid fa-scissors"></i></div>
+                        <h3 class="service-name" data-i18n="damenS1Title">Damenschnitt & Styling</h3>
+                        <p class="service-desc" data-i18n="damenS1Desc">Individuelle Typberatung, Waschen, präziser Schnitt & Föhn-Styling.</p>
+                        <div class="service-footer">
+                            <span class="service-price">€25</span>
+                            <button class="btn btn-sm btn-outline" data-i18n="selectServiceBtn">Wählen & Buchen</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card glass-panel" onclick="quickSelectService('Waschen & Föhnen')">
+                        <div class="service-icon"><i class="fa-solid fa-wind"></i></div>
+                        <h3 class="service-name" data-i18n="damenS2Title">Waschen & Föhnen</h3>
+                        <p class="service-desc" data-i18n="damenS2Desc">Entspannende Haarwäsche mit Pflegekur, Föhnwelle oder Glätten.</p>
+                        <div class="service-footer">
+                            <span class="service-price">€15</span>
+                            <button class="btn btn-sm btn-outline" data-i18n="selectServiceBtn">Wählen & Buchen</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card glass-panel featured-service" onclick="quickSelectService('Balayage / Strähnen')">
+                        <div class="service-badge gold" data-i18n="comboBadge">BESTER DEAL</div>
+                        <div class="service-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <h3 class="service-name" data-i18n="damenS3Title">Balayage / Strähnen</h3>
+                        <p class="service-desc" data-i18n="damenS3Desc">Kreative Farbverläufe, Strähnentechnik inklusive Veredelung & Glossing.</p>
+                        <div class="service-footer">
+                            <span class="service-price">€60</span>
+                            <button class="btn btn-sm btn-primary" data-i18n="selectServiceBtn">Wählen & Buchen</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card glass-panel" onclick="quickSelectService('Haaransatz & Färbung')">
+                        <div class="service-icon"><i class="fa-solid fa-palette"></i></div>
+                        <h3 class="service-name" data-i18n="damenS4Title">Haaransatz & Färbung</h3>
+                        <p class="service-desc" data-i18n="damenS4Desc">Schonende Coloration, brillante Farbergebnisse & Farbglanzversiegelung.</p>
+                        <div class="service-footer">
+                            <span class="service-price">€35</span>
+                            <button class="btn btn-sm btn-outline" data-i18n="selectServiceBtn">Wählen & Buchen</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card glass-panel" onclick="quickSelectService('Keratin & Tiefenpflege')">
+                        <div class="service-icon"><i class="fa-solid fa-spray-can-sparkles"></i></div>
+                        <h3 class="service-name" data-i18n="damenS5Title">Keratin & Tiefenpflege</h3>
+                        <p class="service-desc" data-i18n="damenS5Desc">Intensive Reparaturbehandlung für seidenweiches und glänzendes Haar.</p>
+                        <div class="service-footer">
+                            <span class="service-price">€30</span>
+                            <button class="btn btn-sm btn-outline" data-i18n="selectServiceBtn">Wählen & Buchen</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card glass-panel" onclick="quickSelectService('Augenbrauen Zupfen & Form')">
+                        <div class="service-icon"><i class="fa-solid fa-eye"></i></div>
+                        <h3 class="service-name" data-i18n="damenS6Title">Augenbrauen Zupfen & Form</h3>
+                        <p class="service-desc" data-i18n="damenS6Desc">Perfekte Konturen mit Fadentechnik und optionales Färben.</p>
+                        <div class="service-footer">
+                            <span class="service-price">€10</span>
+                            <button class="btn btn-sm btn-outline" data-i18n="selectServiceBtn">Wählen & Buchen</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Complete Price List Table (Herren) -->
+                <div id="herrenPriceTable" class="price-list-container glass-panel">
+                    <h3 class="price-table-title" data-i18n="fullPriceTitle"><i class="fa-solid fa-list"></i> Vollständige Preisübersicht (Herren)</h3>
                     <div class="price-items-grid">
                         <div class="price-item">
                             <div class="price-info">
@@ -309,45 +424,52 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Gallery Section -->
-        <section id="gallery" class="gallery-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <div class="section-tag" data-i18n="galleryTag">GALERIE</div>
-                    <h2 class="section-title" data-i18n="galleryTitle">Impressionen & Unsere Arbeiten</h2>
-                    <p class="section-subtitle" data-i18n="gallerySub">Präzise Arbeit, moderne Schnitte und erstklassige Bartpflege.</p>
-                </div>
-
-                <div class="gallery-grid">
-                    <div class="gallery-card">
-                        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Barber Haircut Fade" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            <span data-i18n="galCap1">Fade Cut & Transition</span>
+                <!-- Complete Price List Table (Damen) -->
+                <div id="damenPriceTable" class="price-list-container glass-panel" style="display:none;">
+                    <h3 class="price-table-title" data-i18n="damenPriceTitle"><i class="fa-solid fa-list"></i> Vollständige Preisübersicht (Damen)</h3>
+                    <div class="price-items-grid">
+                        <div class="price-item">
+                            <div class="price-info">
+                                <span class="price-title" data-i18n="dp1Name">Damenschnitt, Waschen & Föhnen</span>
+                                <span class="price-sub" data-i18n="dp1Sub">Kompletter Haarschnitt inkl. Föhn-Styling</span>
+                            </div>
+                            <span class="price-tag">€25.00</span>
                         </div>
-                    </div>
-                    <div class="gallery-card">
-                        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Beard Grooming Precision" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            <span data-i18n="galCap2">Präzise Bartkonturen</span>
+                        <div class="price-item">
+                            <div class="price-info">
+                                <span class="price-title" data-i18n="dp2Name">Waschen & Föhnen / Styling</span>
+                                <span class="price-sub" data-i18n="dp2Sub">Pflegewäsche mit Locken- oder Glättstyling</span>
+                            </div>
+                            <span class="price-tag">€15.00</span>
                         </div>
-                    </div>
-                    <div class="gallery-card">
-                        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Classic Haircut Styling" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            <span data-i18n="galCap3">Classic Gentleman Cut</span>
+                        <div class="price-item">
+                            <div class="price-info">
+                                <span class="price-title" data-i18n="dp3Name">Balayage / Ombré & Glossing</span>
+                                <span class="price-sub" data-i18n="dp3Sub">Premium Farbverlauf mit Veredelung</span>
+                            </div>
+                            <span class="price-tag">€60.00</span>
                         </div>
-                    </div>
-                    <div class="gallery-card">
-                        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Barber Shop Interior" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            <span data-i18n="galCap4">Atmosphäre & Pflege</span>
+                        <div class="price-item">
+                            <div class="price-info">
+                                <span class="price-title" data-i18n="dp4Name">Haaransatz & Komplettfärbung</span>
+                                <span class="price-sub" data-i18n="dp4Sub">Farbfrische & Grauabdeckung mit Schutzpflege</span>
+                            </div>
+                            <span class="price-tag">€35.00</span>
+                        </div>
+                        <div class="price-item">
+                            <div class="price-info">
+                                <span class="price-title" data-i18n="dp5Name">Keratin & Intensiv-Haarkur</span>
+                                <span class="price-sub" data-i18n="dp5Sub">Tiefenaufbau & Anti-Frizz Glanzpflege</span>
+                            </div>
+                            <span class="price-tag">€30.00</span>
+                        </div>
+                        <div class="price-item">
+                            <div class="price-info">
+                                <span class="price-title" data-i18n="dp6Name">Augenbrauen Zupfen & Färben</span>
+                                <span class="price-sub" data-i18n="dp6Sub">Präzise Fadentechnik & Farbdesign</span>
+                            </div>
+                            <span class="price-tag">€10.00</span>
                         </div>
                     </div>
                 </div>
@@ -361,23 +483,106 @@
                     <div class="booking-header text-center">
                         <div class="section-tag" data-i18n="bookingTag">ONLINE RESERVIERUNG</div>
                         <h2 class="section-title" data-i18n="bookingTitle">Wunschtermin Vereinbaren</h2>
-                        <p class="section-subtitle" data-i18n="bookingSub">Wählen Sie Datum und Uhrzeit aus. Sie erhalten sofort eine Bestätigung.</p>
+                        <p class="section-subtitle" id="bookingSubtitle" data-i18n="bookingSub">Wählen Sie Ihren gewünschten Friseur, Datum und Uhrzeit aus. Sie erhalten sofort eine Bestätigung.</p>
                     </div>
 
                     <form id="booking-form" class="atelier-booking-wizard">
                         
-                        <!-- STEP 1: Interactive Service Selection Tiles -->
+                        <!-- STEP 1: Staff Selection (Herren / Damen) -->
                         <div class="wizard-step-box">
                             <div class="step-badge-title">
                                 <span class="step-num">01</span>
+                                <h3 id="step1Title" data-i18n="lblBarber">Friseur / Barber Wählen</h3>
+                            </div>
+
+                            <!-- Herren Staff Cards -->
+                            <div id="herrenBarbersGrid" class="barbers-selection-grid">
+                                <!-- Barber 1: Ahmet -->
+                                <div class="barber-card selected" id="barberCard1" onclick="selectBarber('Ahmet (Master Barber)')">
+                                    <div class="barber-select-check"><i class="fa-solid fa-check"></i></div>
+                                    <div class="barber-avatar-box">
+                                        <div class="barber-avatar-inner">
+                                            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&auto=format&fit=crop&q=80" alt="Ahmet" class="barber-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                            <div class="barber-avatar-placeholder" style="display:none;">
+                                                <i class="fa-solid fa-user-tie"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h4 class="barber-name">Ahmet</h4>
+                                    <p class="barber-role" data-i18n="barber1Role">Master Stylist & Fade Spezialist</p>
+                                    <span class="barber-status-badge"><i class="fa-solid fa-circle"></i> Verfügbar</span>
+                                </div>
+
+                                <!-- Barber 2: Can -->
+                                <div class="barber-card" id="barberCard2" onclick="selectBarber('Can (Beard & Style)')">
+                                    <div class="barber-select-check"><i class="fa-solid fa-check"></i></div>
+                                    <div class="barber-avatar-box">
+                                        <div class="barber-avatar-inner">
+                                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&auto=format&fit=crop&q=80" alt="Can" class="barber-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                            <div class="barber-avatar-placeholder" style="display:none;">
+                                                <i class="fa-solid fa-user-gear"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h4 class="barber-name">Can</h4>
+                                    <p class="barber-role" data-i18n="barber2Role">Bart- & Haar-Experte</p>
+                                    <span class="barber-status-badge"><i class="fa-solid fa-circle"></i> Verfügbar</span>
+                                </div>
+                            </div>
+
+                            <!-- Damen Staff Cards -->
+                            <div id="damenStylistsGrid" class="barbers-selection-grid" style="display:none;">
+                                <!-- Stylistin 1: Elena -->
+                                <div class="barber-card selected" id="stylistCard1" onclick="selectBarber('Elena (Balayage Expert)')">
+                                    <div class="barber-select-check"><i class="fa-solid fa-check"></i></div>
+                                    <div class="barber-avatar-box">
+                                        <div class="barber-avatar-inner">
+                                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=80" alt="Elena" class="barber-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                            <div class="barber-avatar-placeholder" style="display:none;">
+                                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h4 class="barber-name">Elena</h4>
+                                    <p class="barber-role" data-i18n="stylist1Role">Master Hair Stylist & Balayage Expertin</p>
+                                    <span class="barber-status-badge"><i class="fa-solid fa-circle"></i> Verfügbar</span>
+                                </div>
+
+                                <!-- Stylistin 2: Aylin -->
+                                <div class="barber-card" id="stylistCard2" onclick="selectBarber('Aylin (Styling & Cut)')">
+                                    <div class="barber-select-check"><i class="fa-solid fa-check"></i></div>
+                                    <div class="barber-avatar-box">
+                                        <div class="barber-avatar-inner">
+                                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="Aylin" class="barber-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                            <div class="barber-avatar-placeholder" style="display:none;">
+                                                <i class="fa-solid fa-gem"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h4 class="barber-name">Aylin</h4>
+                                    <p class="barber-role" data-i18n="stylist2Role">Schnitt-, Föhn- & Keratin-Spezialistin</p>
+                                    <span class="barber-status-badge"><i class="fa-solid fa-circle"></i> Verfügbar</span>
+                                </div>
+                            </div>
+
+                            <input type="hidden" id="selectedGender" value="Herren">
+                            <input type="hidden" id="selectedBarber" value="Ahmet (Master Barber)">
+                        </div>
+
+                        <!-- STEP 2: Interactive Service Selection Tiles -->
+                        <div class="wizard-step-box">
+                            <div class="step-badge-title">
+                                <span class="step-num">02</span>
                                 <h3 data-i18n="lblService">Gewünschte Leistung</h3>
                             </div>
-                            <div class="service-tiles-selector">
+
+                            <!-- Herren Service Tiles -->
+                            <div id="herrenServiceTiles" class="service-tiles-selector">
                                 <label class="tile-option">
-                                    <input type="radio" name="serviceRadio" value="Herrenhaarschnitt" required onchange="syncServiceSelect(this.value)">
+                                    <input type="radio" name="serviceRadio" value="Herrenhaarschnitt" checked onchange="syncServiceSelect(this.value)">
                                     <div class="tile-card">
                                         <i class="fa-solid fa-scissors tile-icon"></i>
-                                        <span class="tile-name">Herrenhaarschnitt</span>
+                                        <span class="tile-name" data-i18n="service1Title">Herrenhaarschnitt</span>
                                         <span class="tile-price">€15</span>
                                     </div>
                                 </label>
@@ -385,7 +590,7 @@
                                     <input type="radio" name="serviceRadio" value="Bartpflege" onchange="syncServiceSelect(this.value)">
                                     <div class="tile-card">
                                         <i class="fa-solid fa-spa tile-icon"></i>
-                                        <span class="tile-name">Präzise Bartpflege</span>
+                                        <span class="tile-name" data-i18n="service2Title">Präzise Bartpflege</span>
                                         <span class="tile-price">€10</span>
                                     </div>
                                 </label>
@@ -394,7 +599,7 @@
                                     <div class="tile-card featured-tile">
                                         <span class="tile-vip-tag">BEST DEAL</span>
                                         <i class="fa-solid fa-crown tile-icon"></i>
-                                        <span class="tile-name">Haar & Bart Komplett</span>
+                                        <span class="tile-name" data-i18n="service3Title">Haar & Bart Komplett</span>
                                         <span class="tile-price">€20</span>
                                     </div>
                                 </label>
@@ -402,7 +607,7 @@
                                     <input type="radio" name="serviceRadio" value="Kinderhaarschnitt" onchange="syncServiceSelect(this.value)">
                                     <div class="tile-card">
                                         <i class="fa-solid fa-child tile-icon"></i>
-                                        <span class="tile-name">Kinderhaarschnitt</span>
+                                        <span class="tile-name" data-i18n="service4Title">Kinderhaarschnitt</span>
                                         <span class="tile-price">€12</span>
                                     </div>
                                 </label>
@@ -410,11 +615,65 @@
                                     <input type="radio" name="serviceRadio" value="Cilt Bakımı & Maske" onchange="syncServiceSelect(this.value)">
                                     <div class="tile-card">
                                         <i class="fa-solid fa-wand-magic-sparkles tile-icon"></i>
-                                        <span class="tile-name">Gesichtspflege & Maske</span>
+                                        <span class="tile-name" data-i18n="service5Title">Gesichtspflege & Maske</span>
                                         <span class="tile-price">€5</span>
                                     </div>
                                 </label>
                             </div>
+
+                            <!-- Damen Service Tiles -->
+                            <div id="damenServiceTiles" class="service-tiles-selector" style="display:none;">
+                                <label class="tile-option">
+                                    <input type="radio" name="serviceRadioDamen" value="Damenschnitt & Styling" checked onchange="syncServiceSelect(this.value)">
+                                    <div class="tile-card">
+                                        <i class="fa-solid fa-scissors tile-icon"></i>
+                                        <span class="tile-name" data-i18n="damenS1Title">Damenschnitt & Styling</span>
+                                        <span class="tile-price">€25</span>
+                                    </div>
+                                </label>
+                                <label class="tile-option">
+                                    <input type="radio" name="serviceRadioDamen" value="Waschen & Föhnen" onchange="syncServiceSelect(this.value)">
+                                    <div class="tile-card">
+                                        <i class="fa-solid fa-wind tile-icon"></i>
+                                        <span class="tile-name" data-i18n="damenS2Title">Waschen & Föhnen</span>
+                                        <span class="tile-price">€15</span>
+                                    </div>
+                                </label>
+                                <label class="tile-option">
+                                    <input type="radio" name="serviceRadioDamen" value="Balayage / Strähnen" onchange="syncServiceSelect(this.value)">
+                                    <div class="tile-card featured-tile">
+                                        <span class="tile-vip-tag">BEST DEAL</span>
+                                        <i class="fa-solid fa-wand-magic-sparkles tile-icon"></i>
+                                        <span class="tile-name" data-i18n="damenS3Title">Balayage / Strähnen</span>
+                                        <span class="tile-price">€60</span>
+                                    </div>
+                                </label>
+                                <label class="tile-option">
+                                    <input type="radio" name="serviceRadioDamen" value="Haaransatz & Färbung" onchange="syncServiceSelect(this.value)">
+                                    <div class="tile-card">
+                                        <i class="fa-solid fa-palette tile-icon"></i>
+                                        <span class="tile-name" data-i18n="damenS4Title">Haaransatz & Färbung</span>
+                                        <span class="tile-price">€35</span>
+                                    </div>
+                                </label>
+                                <label class="tile-option">
+                                    <input type="radio" name="serviceRadioDamen" value="Keratin & Tiefenpflege" onchange="syncServiceSelect(this.value)">
+                                    <div class="tile-card">
+                                        <i class="fa-solid fa-spray-can-sparkles tile-icon"></i>
+                                        <span class="tile-name" data-i18n="damenS5Title">Keratin & Tiefenpflege</span>
+                                        <span class="tile-price">€30</span>
+                                    </div>
+                                </label>
+                                <label class="tile-option">
+                                    <input type="radio" name="serviceRadioDamen" value="Augenbrauen Zupfen & Form" onchange="syncServiceSelect(this.value)">
+                                    <div class="tile-card">
+                                        <i class="fa-solid fa-eye tile-icon"></i>
+                                        <span class="tile-name" data-i18n="damenS6Title">Augenbrauen Zupfen & Form</span>
+                                        <span class="tile-price">€10</span>
+                                    </div>
+                                </label>
+                            </div>
+
                             <!-- Hidden Select for compatibility -->
                             <select id="serviceSelect" style="display:none;" required>
                                 <option value="Herrenhaarschnitt">Herrenhaarschnitt (€15)</option>
@@ -422,13 +681,19 @@
                                 <option value="Haar & Bart Komplett">Haar & Bart Komplett (€20)</option>
                                 <option value="Kinderhaarschnitt">Kinderhaarschnitt (€12)</option>
                                 <option value="Cilt Bakımı & Maske">Gesichtspflege & Maske (€5)</option>
+                                <option value="Damenschnitt & Styling">Damenschnitt & Styling (€25)</option>
+                                <option value="Waschen & Föhnen">Waschen & Föhnen (€15)</option>
+                                <option value="Balayage / Strähnen">Balayage / Strähnen (€60)</option>
+                                <option value="Haaransatz & Färbung">Haaransatz & Färbung (€35)</option>
+                                <option value="Keratin & Tiefenpflege">Keratin & Tiefenpflege (€30)</option>
+                                <option value="Augenbrauen Zupfen & Form">Augenbrauen Zupfen & Form (€10)</option>
                             </select>
                         </div>
 
-                        <!-- STEP 2: Date & Time Matrix Split -->
+                        <!-- STEP 3: Date & Time Matrix Split -->
                         <div class="wizard-step-box">
                             <div class="step-badge-title">
-                                <span class="step-num">02</span>
+                                <span class="step-num">03</span>
                                 <h3 data-i18n="lblDate">Datum & Uhrzeit Wählen</h3>
                             </div>
 
@@ -456,10 +721,10 @@
                             </div>
                         </div>
 
-                        <!-- STEP 3: Customer Information Ribbon -->
+                        <!-- STEP 4: Customer Information Ribbon -->
                         <div class="wizard-step-box">
                             <div class="step-badge-title">
-                                <span class="step-num">03</span>
+                                <span class="step-num">04</span>
                                 <h3 data-i18n="lblName">Ihre Daten</h3>
                             </div>
                             <div class="customer-fields-ribbon">
@@ -510,14 +775,14 @@
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade"
-                            title="Premium Berber Standorts-Karte">
+                            title="R8 Friseur Standorts-Karte">
                         </iframe>
                     </div>
 
                     <!-- Floating Atelier Contact Capsule -->
                     <div class="floating-atelier-capsule glass-panel">
                         <div class="capsule-header">
-                            <span class="capsule-badge">PREMIUM ATELIER</span>
+                            <span class="capsule-badge">R8 ATELIER</span>
                             <h3>Westendstraße 3</h3>
                             <p>64546 Mörfelden-Walldorf</p>
                         </div>
@@ -573,13 +838,18 @@
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
+            <!-- Brand Emblem Showcase -->
+            <div class="footer-showcase text-center">
+                <div class="footer-emblem-container">
+                    <img src="r8_logo.jpg" alt="R8 Friseur Logo" class="footer-emblem-img" loading="lazy">
+                </div>
+                <h3 class="footer-emblem-title">R8 FRISEUR</h3>
+                <p class="footer-emblem-sub">Damen und Herren • Westendstraße 3, 64546 Mörfelden-Walldorf</p>
+            </div>
+
             <div class="footer-content">
                 <div class="footer-brand">
-                    <div class="logo">
-                        <span class="logo-badge">PREMIUM</span>
-                        <span class="logo-text">BERBER <span class="logo-sub">MÖRFELDEN</span></span>
-                    </div>
-                    <p data-i18n="footerTagline">Ihr erstklassiger Herrenfriseur & Barbershop in Mörfelden-Walldorf.</p>
+                    <p data-i18n="footerTagline">Ihr erstklassiger Friseursalon für Damen und Herren in Mörfelden-Walldorf.</p>
                 </div>
 
                 <div class="footer-links">
@@ -597,7 +867,7 @@
             </div>
 
             <div class="footer-bottom text-center">
-                <p>&copy; 2026 Premium Berber Mörfelden-Walldorf. <span data-i18n="allRights">Alle Rechte vorbehalten.</span></p>
+                <p>&copy; 2026 R8 Friseur Mörfelden-Walldorf. <span data-i18n="allRights">Alle Rechte vorbehalten.</span></p>
             </div>
         </div>
     </footer>

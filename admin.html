@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Berber | Yönetici Paneli</title>
+    <title>R8 Friseur | Yönetici Paneli</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -148,17 +148,16 @@
         .admin-stat-icon {
             font-size: 1.6rem;
             color: #000000;
-            background: #ffffff;
-            width: 54px; height: 54px;
+            background: var(--silver-white);
+            width: 50px; height: 50px;
             display: flex; align-items: center; justify-content: center;
             border-radius: 2px;
-            flex-shrink: 0;
         }
 
         .admin-stat-info h3 {
-            font-size: 2rem;
-            font-weight: 800;
             font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
         }
 
         .admin-stat-info p {
@@ -190,7 +189,7 @@
         }
 
         .filter-input {
-            max-width: 240px;
+            max-width: 220px;
         }
 
         .table-responsive {
@@ -214,7 +213,7 @@
         }
 
         .admin-table th {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.6);
             color: var(--silver-white);
             font-family: var(--font-heading);
             font-weight: 700;
@@ -224,12 +223,12 @@
         }
 
         .admin-table tr:hover {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
         }
 
         .badge-status {
             padding: 0.3rem 0.7rem;
-            border-radius: 2px;
+            border-radius: var(--radius-pill);
             font-size: 0.75rem;
             font-weight: 700;
             display: inline-block;
@@ -238,15 +237,15 @@
         }
 
         .status-bekliyor {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--silver-white);
-            border: 1px solid var(--border-silver);
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
         }
 
         .status-onaylandi {
-            background: rgba(16, 185, 129, 0.15);
-            color: #10b981;
-            border: 1px solid rgba(16, 185, 129, 0.3);
+            background: rgba(0, 240, 181, 0.15);
+            color: var(--cyber-teal);
+            border: 1px solid rgba(0, 240, 181, 0.3);
         }
 
         .status-storniert {
@@ -266,16 +265,17 @@
             padding: 0;
             border-radius: 2px;
             font-size: 0.85rem;
-            border: none;
-            cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition-fast);
         }
 
-        .btn-confirm { background: #10b981; color: #fff; }
-        .btn-cancel { background: #f59e0b; color: #fff; }
-        .btn-delete { background: #ef4444; color: #fff; }
+        .btn-confirm { background: var(--cyber-teal); color: #000000; font-weight: bold; }
+        .btn-cancel { background: #f59e0b; color: #000000; font-weight: bold; }
+        .btn-delete { background: #ef4444; color: #ffffff; }
 
         .btn-confirm:hover, .btn-cancel:hover, .btn-delete:hover {
             opacity: 0.85;
@@ -304,18 +304,270 @@
         .btn-logout:hover {
             background: rgba(239, 68, 68, 0.25);
         }
+
+        /* =============================
+           STAFF PROFILE SELECTION SCREEN
+        ============================= */
+        .staff-select-screen {
+            min-height: 100vh;
+            background: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+        }
+
+        .staff-select-container {
+            max-width: 1050px;
+            width: 100%;
+        }
+
+        .staff-select-header {
+            margin-bottom: 3rem;
+        }
+
+        .staff-select-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--silver-white);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .staff-select-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .staff-select-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .staff-profile-card {
+            background: #090a0d;
+            border: 1px solid var(--border-silver);
+            border-radius: var(--radius-sm);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: var(--shadow-card);
+        }
+
+        .staff-profile-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--silver-white);
+            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.12);
+        }
+
+        .staff-profile-card.featured-admin-card {
+            border-color: rgba(212, 175, 55, 0.4);
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.08) 0%, #090a0d 100%);
+        }
+
+        .staff-profile-card.featured-admin-card:hover {
+            border-color: var(--primary-gold);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .staff-card-avatar {
+            margin-bottom: 1.2rem;
+        }
+
+        .staff-avatar-circle {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--border-silver);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            transition: border-color 0.3s ease;
+        }
+
+        .staff-profile-card:hover .staff-avatar-circle {
+            border-color: var(--silver-white);
+        }
+
+        .staff-avatar-circle.admin-circle {
+            font-size: 2.2rem;
+            color: var(--primary-gold);
+            border-color: rgba(212, 175, 55, 0.5);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .staff-avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .staff-avatar-fallback {
+            font-size: 2rem;
+            color: var(--silver-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .staff-type-badge {
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.2rem 0.55rem;
+            border-radius: var(--radius-pill);
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .staff-type-badge.herren {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--silver-white);
+            border: 1px solid var(--border-silver);
+        }
+
+        .staff-type-badge.damen {
+            background: rgba(244, 114, 182, 0.15);
+            color: #f472b6;
+            border: 1px solid rgba(244, 114, 182, 0.3);
+        }
+
+        .staff-type-badge.gold {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary-gold);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+        }
+
+        .staff-card-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--silver-white);
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.5px;
+        }
+
+        .staff-card-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            min-height: 2.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .staff-card-footer {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 0.8rem;
+            margin-top: auto;
+        }
+
+        .staff-stat-pill {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--cyber-teal);
+        }
+
+        .staff-enter-arrow {
+            color: var(--silver-muted);
+            font-size: 0.85rem;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .staff-profile-card:hover .staff-enter-arrow {
+            transform: translateX(4px);
+            color: var(--silver-white);
+        }
+
+        /* =============================
+           ACTIVE STAFF DASHBOARD BANNER
+        ============================= */
+        .active-staff-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 1.8rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border: 1px solid var(--border-silver);
+            background: rgba(15, 17, 21, 0.8);
+        }
+
+        .active-staff-left {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .active-staff-avatar-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--silver-white);
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--silver-white);
+        }
+
+        .active-staff-avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .active-staff-title-text {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--silver-white);
+            margin: 0.1rem 0;
+            letter-spacing: 0.5px;
+        }
+
+        .active-staff-sub-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .active-staff-right-actions {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
 
     <!-- ================================
-         LOGIN SCREEN
+         1. LOGIN SCREEN
     ================================ -->
     <div class="login-screen" id="loginScreen">
         <div class="login-card">
             <div class="login-logo">
-                <span class="logo-badge">PREMIUM</span>
-                <span class="logo-text">BERBER <span class="logo-sub">MÖRFELDEN</span></span>
+                <span class="logo-badge">R8</span>
+                <span class="logo-text">FRISEUR <span class="logo-sub">MÖRFELDEN</span></span>
             </div>
             <p class="login-subtitle">Yönetici Paneli Erişimi</p>
 
@@ -347,7 +599,125 @@
     </div>
 
     <!-- ================================
-         ADMIN DASHBOARD (hidden until login)
+         2. STAFF PROFILE SELECTION SCREEN
+    ================================ -->
+    <div class="staff-select-screen" id="staffSelectScreen" style="display:none;">
+        <div class="staff-select-container">
+            <div class="staff-select-header text-center">
+                <div class="login-logo">
+                    <span class="logo-badge">R8</span>
+                    <span class="logo-text">FRISEUR <span class="logo-sub">MÖRFELDEN</span></span>
+                </div>
+                <h1 class="staff-select-title">Lütfen Profilinizi Seçin</h1>
+                <p class="staff-select-subtitle">Kendi randevularınızı ve takviminizi yönetmek için isminize tıklayın.</p>
+            </div>
+
+            <div class="staff-select-grid">
+                <!-- Profile 0: Genel Yönetici -->
+                <div class="staff-profile-card featured-admin-card" onclick="selectStaffProfile('ALL')">
+                    <div class="staff-card-avatar">
+                        <div class="staff-avatar-circle admin-circle">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                    </div>
+                    <div class="staff-card-body">
+                        <span class="staff-type-badge gold">TÜM SALON</span>
+                        <h3 class="staff-card-name">Genel Yönetici</h3>
+                        <p class="staff-card-desc">Tüm kadın & erkek randevularını tek ekranda yönetin</p>
+                    </div>
+                    <div class="staff-card-footer">
+                        <span class="staff-stat-pill" id="badgeAllCount">0 Randevu</span>
+                        <span class="staff-enter-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <!-- Profile 1: Ahmet (Herren) -->
+                <div class="staff-profile-card" onclick="selectStaffProfile('Ahmet (Master Barber)')">
+                    <div class="staff-card-avatar">
+                        <div class="staff-avatar-circle">
+                            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&auto=format&fit=crop&q=80" alt="Ahmet" class="staff-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="staff-avatar-fallback" style="display:none;"><i class="fa-solid fa-user-tie"></i></div>
+                        </div>
+                    </div>
+                    <div class="staff-card-body">
+                        <span class="staff-type-badge herren">HERREN / ERKEK</span>
+                        <h3 class="staff-card-name">Ahmet</h3>
+                        <p class="staff-card-desc">Master Stylist & Fade Spezialist</p>
+                    </div>
+                    <div class="staff-card-footer">
+                        <span class="staff-stat-pill" id="badgeAhmetCount">0 Randevu</span>
+                        <span class="staff-enter-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <!-- Profile 2: Can (Herren) -->
+                <div class="staff-profile-card" onclick="selectStaffProfile('Can (Beard & Style)')">
+                    <div class="staff-card-avatar">
+                        <div class="staff-avatar-circle">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&auto=format&fit=crop&q=80" alt="Can" class="staff-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="staff-avatar-fallback" style="display:none;"><i class="fa-solid fa-user-gear"></i></div>
+                        </div>
+                    </div>
+                    <div class="staff-card-body">
+                        <span class="staff-type-badge herren">HERREN / ERKEK</span>
+                        <h3 class="staff-card-name">Can</h3>
+                        <p class="staff-card-desc">Bart- & Haar-Experte</p>
+                    </div>
+                    <div class="staff-card-footer">
+                        <span class="staff-stat-pill" id="badgeCanCount">0 Randevu</span>
+                        <span class="staff-enter-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <!-- Profile 3: Elena (Damen) -->
+                <div class="staff-profile-card" onclick="selectStaffProfile('Elena (Balayage Expert)')">
+                    <div class="staff-card-avatar">
+                        <div class="staff-avatar-circle">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=80" alt="Elena" class="staff-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="staff-avatar-fallback" style="display:none;"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        </div>
+                    </div>
+                    <div class="staff-card-body">
+                        <span class="staff-type-badge damen">DAMEN / KADIN</span>
+                        <h3 class="staff-card-name">Elena</h3>
+                        <p class="staff-card-desc">Master Hair Stylist & Balayage Expertin</p>
+                    </div>
+                    <div class="staff-card-footer">
+                        <span class="staff-stat-pill" id="badgeElenaCount">0 Randevu</span>
+                        <span class="staff-enter-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <!-- Profile 4: Aylin (Damen) -->
+                <div class="staff-profile-card" onclick="selectStaffProfile('Aylin (Styling & Cut)')">
+                    <div class="staff-card-avatar">
+                        <div class="staff-avatar-circle">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="Aylin" class="staff-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="staff-avatar-fallback" style="display:none;"><i class="fa-solid fa-gem"></i></div>
+                        </div>
+                    </div>
+                    <div class="staff-card-body">
+                        <span class="staff-type-badge damen">DAMEN / KADIN</span>
+                        <h3 class="staff-card-name">Aylin</h3>
+                        <p class="staff-card-desc">Schnitt-, Föhn- & Keratin-Spezialistin</p>
+                    </div>
+                    <div class="staff-card-footer">
+                        <span class="staff-stat-pill" id="badgeAylinCount">0 Randevu</span>
+                        <span class="staff-enter-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top: 3rem;">
+                <button class="btn btn-outline btn-sm" onclick="doLogout()">
+                    <i class="fa-solid fa-right-from-bracket"></i> Çıkış Yap
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================
+         3. ADMIN DASHBOARD
     ================================ -->
     <div id="adminDashboard" style="display:none;">
 
@@ -355,12 +725,15 @@
         <header class="site-header">
             <nav class="navbar">
                 <a href="index.html" class="logo">
-                    <span class="logo-badge">PREMIUM</span>
-                    <span class="logo-text">BERBER <span class="logo-sub">MÖRFELDEN</span></span>
-                    <span style="font-size: 0.75rem; color: #000000; background: #ffffff; font-weight: 900; margin-left: 0.5rem; padding: 0.1rem 0.5rem; border-radius: 2px;">ADMIN</span>
+                    <span class="logo-badge">R8</span>
+                    <span class="logo-text">FRISEUR <span class="logo-sub">MÖRFELDEN</span></span>
+                    <span style="font-size: 0.75rem; color: #000000; background: #ffffff; font-weight: 900; margin-left: 0.5rem; padding: 0.1rem 0.5rem; border-radius: 2px;">PANEL</span>
                 </a>
 
                 <div class="nav-actions">
+                    <button class="btn btn-outline btn-sm" onclick="showStaffSelection()">
+                        <i class="fa-solid fa-users"></i> Profil Değiştir
+                    </button>
                     <button class="btn btn-logout btn-sm" onclick="doLogout()">
                         <i class="fa-solid fa-right-from-bracket"></i> Çıkış
                     </button>
@@ -373,10 +746,27 @@
 
         <main class="admin-page container">
 
-            <div class="section-header" style="margin-bottom: 2rem;">
-                <div class="section-tag">YÖNETİM PANELDİR</div>
-                <h1 class="section-title">Randevu Yönetimi Dashboard</h1>
-                <p class="section-subtitle" style="margin:0;">Premium Berber müşterilerinin randevularını yönetin, onaylayın veya silin.</p>
+            <!-- Active Staff Profile Header Banner -->
+            <div class="active-staff-banner glass-panel">
+                <div class="active-staff-left">
+                    <div class="active-staff-avatar-box" id="activeStaffAvatar">
+                        <!-- Populated by JS -->
+                    </div>
+                    <div>
+                        <span class="staff-type-badge" id="activeStaffBadge">HERREN</span>
+                        <h2 class="active-staff-title-text" id="activeStaffName">Ahmet (Master Barber)</h2>
+                        <p class="active-staff-sub-text" id="activeStaffSub">Sadece sizin randevularınız ve takviminiz listeleniyor.</p>
+                    </div>
+                </div>
+
+                <div class="active-staff-right-actions">
+                    <button class="btn btn-outline btn-sm" onclick="showStaffSelection()">
+                        <i class="fa-solid fa-users-gear"></i> Profil Değiştir
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="exportToCSV()">
+                        <i class="fa-solid fa-file-csv"></i> CSV İndir
+                    </button>
+                </div>
             </div>
 
             <!-- Dashboard Statistics -->
@@ -385,7 +775,7 @@
                     <div class="admin-stat-icon"><i class="fa-solid fa-calendar-check"></i></div>
                     <div class="admin-stat-info">
                         <h3 id="statTotalCount">0</h3>
-                        <p>Toplam Randevu</p>
+                        <p id="lblStatTotal">Toplam Randevum</p>
                     </div>
                 </div>
 
@@ -393,15 +783,15 @@
                     <div class="admin-stat-icon"><i class="fa-solid fa-clock"></i></div>
                     <div class="admin-stat-info">
                         <h3 id="statPendingCount">0</h3>
-                        <p>Bekleyen Randevular</p>
+                        <p id="lblStatPending">Bekleyen Randevular</p>
                     </div>
                 </div>
 
                 <div class="admin-stat-card">
-                    <div class="admin-stat-icon"><i class="fa-solid fa-check-double"></i></div>
+                    <div class="admin-stat-icon"><i class="fa-solid fa-circle-check"></i></div>
                     <div class="admin-stat-info">
                         <h3 id="statApprovedCount">0</h3>
-                        <p>Onaylanan Randevular</p>
+                        <p id="lblStatApproved">Onaylanan Randevular</p>
                     </div>
                 </div>
 
@@ -409,7 +799,7 @@
                     <div class="admin-stat-icon"><i class="fa-solid fa-calendar-day"></i></div>
                     <div class="admin-stat-info">
                         <h3 id="statTodayCount">0</h3>
-                        <p>Bugünün Randevuları</p>
+                        <p id="lblStatToday">Bugünün Randevuları</p>
                     </div>
                 </div>
             </div>
@@ -418,7 +808,7 @@
             <div class="admin-controls-bar">
                 <div class="filter-group">
                     <!-- Search Bar -->
-                    <input type="text" id="searchInput" class="form-control filter-input" placeholder="Müşteri veya Telefon Ara...">
+                    <input type="text" id="searchInput" class="form-control filter-input" placeholder="Müşteri, telefon veya hizmet ara...">
                     
                     <!-- Date Filter -->
                     <input type="date" id="dateFilter" class="form-control filter-input">
@@ -429,6 +819,21 @@
                         <option value="Bekliyor">Bekliyor</option>
                         <option value="Onaylandı">Onaylandı</option>
                         <option value="Storniert">Storniert (İptal)</option>
+                    </select>
+
+                    <!-- Extra Filters for General Admin -->
+                    <select id="genderFilter" class="form-control filter-input" style="display:none;">
+                        <option value="ALL">Tüm Bölümler</option>
+                        <option value="Herren">Herren (Erkek)</option>
+                        <option value="Damen">Damen (Kadın)</option>
+                    </select>
+
+                    <select id="barberFilter" class="form-control filter-input" style="display:none;">
+                        <option value="ALL">Tüm Personel</option>
+                        <option value="Ahmet (Master Barber)">Ahmet (Herren)</option>
+                        <option value="Can (Beard & Style)">Can (Herren)</option>
+                        <option value="Elena (Balayage Expert)">Elena (Damen)</option>
+                        <option value="Aylin (Styling & Cut)">Aylin (Damen)</option>
                     </select>
 
                     <button class="btn btn-outline btn-sm" onclick="resetFilters()">
@@ -449,6 +854,8 @@
                     <thead>
                         <tr>
                             <th>Tarih & Saat</th>
+                            <th>Bölüm</th>
+                            <th>Personel</th>
                             <th>Müşteri Adı</th>
                             <th>Telefon</th>
                             <th>Hizmet</th>
@@ -469,20 +876,31 @@
     <script src="admin.js"></script>
     <script>
         // ============================================================
-        // AUTHENTICATION LOGIC (Password: ramsy)
+        // AUTHENTICATION LOGIC (Password: r8)
         // ============================================================
-        const ADMIN_PASSWORD = 'ramsy';
-        const SESSION_KEY = 'finale_admin_auth';
+        const ADMIN_PASSWORD = 'r8';
+        const SESSION_KEY = 'r8_admin_auth';
+        const ACTIVE_STAFF_KEY = 'r8_active_staff';
 
         function checkSession() {
             return sessionStorage.getItem(SESSION_KEY) === 'true';
         }
 
-        function showDashboard() {
+        function showStaffSelection() {
             document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('adminDashboard').style.display = 'none';
+            document.getElementById('staffSelectScreen').style.display = 'flex';
+            if (typeof updateStaffBadges === 'function') {
+                updateStaffBadges();
+            }
+        }
+
+        function selectStaffProfile(staffName) {
+            sessionStorage.setItem(ACTIVE_STAFF_KEY, staffName);
+            document.getElementById('staffSelectScreen').style.display = 'none';
             document.getElementById('adminDashboard').style.display = 'block';
-            if (typeof renderDashboard === 'function') {
-                renderDashboard();
+            if (typeof initActiveProfile === 'function') {
+                initActiveProfile(staffName);
             }
         }
 
@@ -491,10 +909,15 @@
             const pass = document.getElementById('adminPass').value;
             const errEl = document.getElementById('loginError');
 
-            if (pass === ADMIN_PASSWORD) {
+            if (pass.trim().toLowerCase() === ADMIN_PASSWORD) {
                 sessionStorage.setItem(SESSION_KEY, 'true');
                 errEl.classList.remove('show');
-                showDashboard();
+                const savedStaff = sessionStorage.getItem(ACTIVE_STAFF_KEY);
+                if (savedStaff) {
+                    selectStaffProfile(savedStaff);
+                } else {
+                    showStaffSelection();
+                }
             } else {
                 errEl.classList.add('show');
                 document.getElementById('adminPass').value = '';
@@ -504,11 +927,17 @@
 
         function doLogout() {
             sessionStorage.removeItem(SESSION_KEY);
+            sessionStorage.removeItem(ACTIVE_STAFF_KEY);
             location.reload();
         }
 
         if (checkSession()) {
-            showDashboard();
+            const savedStaff = sessionStorage.getItem(ACTIVE_STAFF_KEY);
+            if (savedStaff) {
+                selectStaffProfile(savedStaff);
+            } else {
+                showStaffSelection();
+            }
         }
     </script>
 </body>
