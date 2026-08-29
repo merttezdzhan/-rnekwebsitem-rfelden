@@ -1858,39 +1858,70 @@ h1, h2, h3, h4, .brand-title {
         padding: 0.7rem 1.2rem;
     }
 
+    .site-header {
+        top: 0.6rem !important;
+        padding: 0 0.6rem !important;
+        overflow: visible !important;
+    }
+
+    .navbar {
+        padding: 0.45rem 0.8rem !important;
+        overflow: visible !important;
+        position: relative !important;
+    }
+
     .logo-text {
         font-size: 1rem;
     }
 
     .nav-menu {
-        position: fixed;
-        top: 5rem;
-        left: 0.8rem;
-        right: 0.8rem;
-        background: rgba(5,5,7,0.98);
-        border: 1px solid var(--border-silver);
-        border-radius: var(--radius-sm);
-        padding: 1.5rem;
-        flex-direction: column;
-        display: none;
-        box-shadow: var(--shadow-card);
-        z-index: 999;
+        position: fixed !important;
+        top: 4.5rem !important;
+        left: 0.6rem !important;
+        right: 0.6rem !important;
+        width: calc(100% - 1.2rem) !important;
+        max-width: 100% !important;
+        background: rgba(8, 9, 12, 0.98) !important;
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
+        border: 1px solid var(--border-silver-bright) !important;
+        border-radius: var(--radius-sm) !important;
+        padding: 1.6rem 1.2rem !important;
+        flex-direction: column !important;
+        display: none !important;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.98), 0 0 25px rgba(255, 255, 255, 0.1) !important;
+        z-index: 99999 !important;
+        box-sizing: border-box !important;
     }
     .nav-menu.active {
-        display: flex;
+        display: flex !important;
     }
     .nav-links {
-        flex-direction: column;
-        gap: 1.2rem;
-        width: 100%;
+        flex-direction: column !important;
+        gap: 1.1rem !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+    .nav-link {
+        font-size: 1rem !important;
+        padding: 0.4rem 0 !important;
+        display: block !important;
     }
     .nav-actions {
-        flex-direction: column;
-        width: 100%;
-        margin-top: 1rem;
+        flex-direction: column !important;
+        width: 100% !important;
+        margin-top: 1rem !important;
+        gap: 0.8rem !important;
+        border-top: 1px solid var(--border-light);
+        padding-top: 1rem;
+    }
+    .nav-actions .btn {
+        width: 100% !important;
     }
     .mobile-toggle {
-        display: block;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
     }
 
     /* Hero */
@@ -2011,7 +2042,7 @@ h1, h2, h3, h4, .brand-title {
         box-sizing: border-box !important;
     }
 
-    section, main, header, footer, .container, .hero-container, .about-full-container {
+    section, main, footer, .container, .hero-container, .about-full-container {
         max-width: 100% !important;
         overflow-x: hidden !important;
         box-sizing: border-box !important;
@@ -2028,6 +2059,7 @@ h1, h2, h3, h4, .brand-title {
         padding: 0 0.5rem !important;
         width: 100% !important;
         max-width: 100% !important;
+        overflow: visible !important;
     }
 
     .navbar {
@@ -2038,6 +2070,8 @@ h1, h2, h3, h4, .brand-title {
         flex-wrap: nowrap !important;
         width: 100% !important;
         max-width: 100% !important;
+        overflow: visible !important;
+        position: relative !important;
     }
 
     .navbar-brand-group {

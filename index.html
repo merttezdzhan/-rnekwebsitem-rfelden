@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Stylesheet with Cache Busting -->
-    <link rel="stylesheet" href="style.css?v=3.8">
+    <link rel="stylesheet" href="style.css?v=3.9">
 
     <style>
         /* Anti-overflow and full mobile responsiveness */
@@ -113,7 +113,22 @@
             margin-left: auto !important;
             flex-shrink: 0 !important;
             padding: 0.4rem 0.65rem !important;
-            touch-action: manipulation;
+            touch-action: manipulation !important;
+            cursor: pointer !important;
+            z-index: 1002 !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid var(--border-silver) !important;
+            color: #ffffff !important;
+            border-radius: var(--radius-sm) !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 1.15rem !important;
+        }
+        @media (min-width: 769px) {
+            .mobile-toggle {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -206,8 +221,8 @@
             </div>
 
             <!-- Mobile Menu Toggle -->
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Menü öffnen">
-                <i class="fa-solid fa-bars"></i>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menü öffnen" onclick="toggleMobileMenu(event)">
+                <i class="fa-solid fa-bars" id="toggleIcon"></i>
             </button>
         </nav>
     </header>
@@ -986,6 +1001,6 @@
     </div>
 
     <!-- JavaScript File with Cache Busting -->
-    <script src="script.js?v=3.8"></script>
+    <script src="script.js?v=3.9"></script>
 </body>
 </html>

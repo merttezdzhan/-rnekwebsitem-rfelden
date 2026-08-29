@@ -454,21 +454,44 @@ document.addEventListener('DOMContentLoaded', () => {
     initApp();
 });
 
-function initApp() {
-    // 1. Mobile Menu Toggle
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navMenu = document.getElementById('navMenu');
-    if (mobileToggle && navMenu) {
-        mobileToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
+function toggleMobileMenu(e) {
+    if (e) {
+        e.preventDefault();
+        e.stopPropagation();
     }
+    const navMenu = document.getElementById('navMenu');
+    const toggleIcon = document.getElementById('toggleIcon');
+    if (navMenu) {
+        const isOpen = navMenu.classList.toggle('active');
+        if (toggleIcon) {
+            toggleIcon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+        }
+    }
+}
+window.toggleMobileMenu = toggleMobileMenu;
+
+function initApp() {
+    // 1. Mobile Menu Link & Outside Click Listeners
+    document.querySelectorAll('.nav-link, .nav-actions a').forEach(link => {
+        link.addEventListener('click', () => {
+            const navMenu = document.getElementById('navMenu');
+            const toggleIcon = document.getElementById('toggleIcon');
+            if (navMenu) navMenu.classList.remove('active');
+            if (toggleIcon) toggleIcon.className = 'fa-solid fa-bars';
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        const navMenu = document.getElementById('navMenu');
+        const mobileToggle = document.getElementById('mobileToggle');
+        if (navMenu && navMenu.classList.contains('active')) {
+            if (!navMenu.contains(e.target) && mobileToggle && !mobileToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                const toggleIcon = document.getElementById('toggleIcon');
+                if (toggleIcon) toggleIcon.className = 'fa-solid fa-bars';
+            }
+        }
+    });
 
     // 2. Staff Cards Selection Click Listeners
     const barberCard1 = document.getElementById('barberCard1');
