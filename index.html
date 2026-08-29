@@ -16,17 +16,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Stylesheet with Cache Busting -->
-    <link rel="stylesheet" href="style.css?v=3.6">
+    <link rel="stylesheet" href="style.css?v=3.8">
 
     <style>
-        /* Bulletproof Navbar Row Layout for all Mobile & Desktop screens */
+        /* Anti-overflow and full mobile responsiveness */
+        html, body {
+            overflow-x: hidden !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        *, *::before, *::after {
+            box-sizing: border-box !important;
+        }
         .site-header {
             position: fixed;
-            top: 0.8rem;
+            top: 0.6rem;
             left: 0;
-            right: 0;
+            width: 100% !important;
+            max-width: 100% !important;
             z-index: 1000;
-            padding: 0 0.8rem;
+            padding: 0 0.6rem;
+            box-sizing: border-box !important;
         }
         .navbar {
             display: flex !important;
@@ -34,14 +45,17 @@
             align-items: center !important;
             justify-content: space-between !important;
             flex-wrap: nowrap !important;
-            padding: 0.45rem 0.85rem !important;
-            gap: 0.5rem !important;
+            padding: 0.4rem 0.75rem !important;
+            gap: 0.4rem !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
         }
         .navbar-brand-group {
             display: inline-flex !important;
             flex-direction: row !important;
             align-items: center !important;
-            gap: 0.65rem !important;
+            gap: 0.5rem !important;
             flex-shrink: 0 !important;
             flex-wrap: nowrap !important;
         }
@@ -54,8 +68,8 @@
             line-height: 0 !important;
         }
         .nav-logo-img {
-            width: 38px !important;
-            height: 38px !important;
+            width: 36px !important;
+            height: 36px !important;
             border-radius: 50% !important;
             object-fit: cover !important;
             border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
@@ -79,10 +93,10 @@
             display: inline-flex !important;
             flex-direction: row !important;
             align-items: center !important;
-            gap: 0.35rem !important;
-            padding: 0.28rem 0.6rem !important;
+            gap: 0.3rem !important;
+            padding: 0.26rem 0.52rem !important;
             border-radius: 9999px !important;
-            font-size: 0.75rem !important;
+            font-size: 0.72rem !important;
             font-weight: 700 !important;
             border: none !important;
             cursor: pointer !important;
@@ -90,6 +104,7 @@
             letter-spacing: 0.5px !important;
             flex-shrink: 0 !important;
             white-space: nowrap !important;
+            touch-action: manipulation;
         }
         .gender-tab span {
             white-space: nowrap !important;
@@ -98,6 +113,7 @@
             margin-left: auto !important;
             flex-shrink: 0 !important;
             padding: 0.4rem 0.65rem !important;
+            touch-action: manipulation;
         }
     </style>
 </head>
@@ -970,6 +986,6 @@
     </div>
 
     <!-- JavaScript File with Cache Busting -->
-    <script src="script.js?v=3.6"></script>
+    <script src="script.js?v=3.8"></script>
 </body>
 </html>
