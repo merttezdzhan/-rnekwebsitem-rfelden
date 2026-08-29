@@ -1317,7 +1317,7 @@ h1, h2, h3, h4, .brand-title {
     color: var(--cyber-teal);
 }
 
-.time-slot-btn:hover:not(.booked) {
+.time-slot-btn:hover:not(.booked):not(.past-slot) {
     background: rgba(255, 255, 255, 0.15);
     border-color: var(--silver-white);
 }
@@ -1342,6 +1342,35 @@ h1, h2, h3, h4, .brand-title {
 
 .time-slot-btn.booked small {
     color: var(--text-muted);
+}
+
+.time-slot-btn.past-slot {
+    opacity: 0.28;
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.5);
+    cursor: not-allowed;
+}
+
+.time-slot-btn.past-slot small {
+    color: #ef4444 !important;
+    font-weight: 600;
+}
+
+.slots-notice-alert {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.2rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    border-radius: var(--radius-sm);
+    color: #fca5a5;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    text-align: center;
 }
 
 /* ==========================================================================
@@ -2181,6 +2210,8 @@ h1, h2, h3, h4, .brand-title {
     border-radius: var(--radius-sm);
     padding: 1.8rem 1.5rem;
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     transition: var(--transition-fast);
     position: relative;
     display: flex;

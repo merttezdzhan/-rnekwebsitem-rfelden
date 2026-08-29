@@ -129,7 +129,9 @@ const translations = {
         lblPhone: "Telefonnummer",
         phPhone: "Telefonnummer",
         lblNotes: "Anmerkungen (Optional)",
-        phNotes: "Anmerkungen (Op        contactTag: "KONTAKT & STANDORT",
+        phNotes: "Anmerkungen (Optional)",
+        btnConfirmBooking: "Termin Jetzt Verbindlich Buchen",
+        contactTag: "KONTAKT & STANDORT",
         contactTitle: "Besuchen Sie Uns in Rüsselsheim am Main",
         addrLabel: "Adresse",
         phoneLabel: "Telefon & Terminvereinbarung",
@@ -144,6 +146,8 @@ const translations = {
         modalCloseBtn: "Verstanden",
         slotAvailableText: "Frei",
         slotBookedText: "Belegt",
+        slotPastText: "Vorbei",
+        noSlotsTodayText: "Für heute sind leider keine freien Termine mehr verfügbar. Bitte wählen Sie ein anderes Datum.",
         sundayClosedText: "Sonntags ist der Salon geschlossen. Bitte wählen Sie Montag bis Samstag.",
         selectTimeAlert: "Bitte wählen Sie eine freie Uhrzeit aus."
     },
@@ -188,7 +192,7 @@ const translations = {
         hoursClosed: "Kapalı",
         aboutTag: "SALONUMUZ HAKKINDA",
         aboutTitle: "R8 Friseur – Gelenek ve Modern Stil Bir Arada",
-        aboutDesc1: "Rüsselsheim am Main Eichengrund 5 adresinde kadın ve erkek için ayrı bölümlerimizde birinci sınıf kuaförlük ve bakım deneyimi sunuyoruz.",Desc1: "Mörfelden-Walldorf Westendstraße 3 adresinde kadın ve erkek için ayrı bölümlerimizde birinci sınıf kuaförlük ve bakım deneyimi sunuyoruz.",
+        aboutDesc1: "Rüsselsheim am Main Eichengrund 5 adresinde kadın ve erkek için ayrı bölümlerimizde birinci sınıf kuaförlük ve bakım deneyimi sunuyoruz.",
         aboutDesc2: "Pratik Skin Fade, klasik kesimler, balyaj veya sıcak havlu destekli sakal bakımı: Bizim için en önemli şey hassasiyet ve memnuniyetinizdir.",
         feat1Title: "Hassas Kesim & Renklendirme",
         feat1Desc: "Kafa yapısına özel kesimler, modern balyaj ve boya teknikleri.",
@@ -289,6 +293,8 @@ const translations = {
         modalCloseBtn: "Tamam",
         slotAvailableText: "Boş",
         slotBookedText: "Dolu",
+        slotPastText: "Geçti",
+        noSlotsTodayText: "Bugün için uygun randevu saati kalmamıştır. Lütfen sonraki günleri seçiniz.",
         sundayClosedText: "Pazar günleri salonumuz kapalıdır. Lütfen Pazartesi - Cumartesi arası bir gün seçin.",
         selectTimeAlert: "Lütfen uygun bir randevu saati seçin."
     },
@@ -434,6 +440,8 @@ const translations = {
         modalCloseBtn: "Got it",
         slotAvailableText: "Available",
         slotBookedText: "Booked",
+        slotPastText: "Passed",
+        noSlotsTodayText: "No available time slots left for today. Please select another date.",
         sundayClosedText: "The salon is closed on Sundays. Please select Monday to Saturday.",
         selectTimeAlert: "Please select an available time slot."
     }
@@ -473,11 +481,28 @@ function initApp() {
     if (stylistCard1) stylistCard1.addEventListener('click', () => selectBarber('Elena (Balayage Expert)'));
     if (stylistCard2) stylistCard2.addEventListener('click', () => selectBarber('Aylin (Styling & Cut)'));
 
-    // 3. Set Min Date
+    // 3. Set Date Input Default & Min Date
     const dateInput = document.getElementById('bookingDate');
     if (dateInput) {
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('min', today);
+        const now = new Date();
+        const yyyy = now.getFullYear();
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const dd = String(now.getDate()).padStart(2, '0');
+        const todayStr = `${yyyy}-${mm}-${dd}`;
+        
+        dateInput.setAttribute('min', todayStr);
+
+        // If today is Sunday (day 0), advance default date to Monday
+        if (now.getDay() === 0) {
+            now.setDate(now.getDate() + 1);
+            const nextY = now.getFullYear();
+            const nextM = String(now.getMonth() + 1).padStart(2, '0');
+            const nextD = String(now.getDate()).padStart(2, '0');
+            dateInput.value = `${nextY}-${nextM}-${nextD}`;
+        } else {
+            dateInput.value = todayStr;
+        }
+
         dateInput.addEventListener('change', handleDateChange);
     }
 
@@ -501,6 +526,11 @@ function initApp() {
 
     // 7. Initial language setup
     changeLanguage(currentLang);
+
+    // 8. Initial Time Slots Render
+    if (dateInput && dateInput.value) {
+        renderTimeSlots(dateInput.value);
+    }
 }
 
 // --- Gender Section Selection & Switching ---
@@ -766,7 +796,22 @@ function renderTimeSlots(dateStr) {
     slotsContainer.innerHTML = '';
 
     const dict = translations[currentLang];
-    const dateObj = new Date(dateStr);
+    if (!dateStr) {
+        slotsContainer.innerHTML = `
+            <div class="slots-placeholder">
+                <i class="fa-solid fa-calendar-day"></i>
+                <p>${dict.timeSlotPlaceholder}</p>
+            </div>
+        `;
+        return;
+    }
+
+    // Split date string to avoid timezone shifts
+    const parts = dateStr.split('-');
+    const year = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1;
+    const day = parseInt(parts[2], 10);
+    const dateObj = new Date(year, month, day);
     const dayOfWeek = dateObj.getDay();
 
     if (dayOfWeek === 0) {
@@ -778,6 +823,15 @@ function renderTimeSlots(dateStr) {
         `;
         return;
     }
+
+    // Calculate Today check & Current Time in minutes
+    const now = new Date();
+    const nowY = now.getFullYear();
+    const nowM = String(now.getMonth() + 1).padStart(2, '0');
+    const nowD = String(now.getDate()).padStart(2, '0');
+    const todayStr = `${nowY}-${nowM}-${nowD}`;
+    const isToday = (dateStr === todayStr);
+    const currentTotalMinutes = now.getHours() * 60 + now.getMinutes();
 
     // Mo-Fr: last slot at 18:15 (9:00 + 12 slots of 45min = 18:00), Sa: last at 17:15
     const maxMinutes = (dayOfWeek === 6) ? (17 * 60 + 15) : (18 * 60 + 15);
@@ -810,29 +864,59 @@ function renderTimeSlots(dateStr) {
         })
         .map(app => app.time);
 
+    let availableCount = 0;
+
     timeSlots.forEach(time => {
+        const [slotH, slotM] = time.split(':').map(Number);
+        const slotTotalMin = slotH * 60 + slotM;
+
         const isBooked = bookedTimes.includes(time);
+        // If today, disable slots that have already passed (with 10 min buffer)
+        const isPast = isToday && (slotTotalMin <= currentTotalMinutes + 10);
 
         const btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = `time-slot-btn ${isBooked ? 'booked' : ''}`;
-        btn.innerHTML = `
-            <span>${time}</span>
-            <small>${isBooked ? dict.slotBookedText : dict.slotAvailableText}</small>
-        `;
 
-        if (!isBooked) {
+        if (isPast) {
+            btn.className = 'time-slot-btn past-slot';
+            btn.disabled = true;
+            btn.innerHTML = `
+                <span>${time}</span>
+                <small>${dict.slotPastText || 'Vorbei'}</small>
+            `;
+        } else if (isBooked) {
+            btn.className = 'time-slot-btn booked';
+            btn.disabled = true;
+            btn.innerHTML = `
+                <span>${time}</span>
+                <small>${dict.slotBookedText || 'Belegt'}</small>
+            `;
+        } else {
+            availableCount++;
+            btn.className = 'time-slot-btn available';
+            btn.innerHTML = `
+                <span>${time}</span>
+                <small>${dict.slotAvailableText || 'Frei'}</small>
+            `;
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.time-slot-btn').forEach(b => b.classList.remove('selected'));
                 btn.classList.add('selected');
                 selectedTimeInput.value = time;
             });
-        } else {
-            btn.disabled = true;
         }
 
         slotsContainer.appendChild(btn);
     });
+
+    if (availableCount === 0 && isToday) {
+        const notice = document.createElement('div');
+        notice.className = 'slots-notice-alert';
+        notice.innerHTML = `
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>${dict.noSlotsTodayText || 'Bugün için randevu saatleri dolmuştur.'}</span>
+        `;
+        slotsContainer.prepend(notice);
+    }
 }
 
 // --- Booking Form Submit Handler ---
